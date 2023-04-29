@@ -1,0 +1,41 @@
+* Mirror incoming UDP/IP packets back to their source IP:port
+
+  Reflects incoming UDP/IP data (by default on 0.0.0.0 port 4500) back to its origin.
+
+** Example
+
+   On =some.hostname.com=, checkout =python-udp-echo= using =git clone
+   https://github.com/pjkundert/python-udp-echo.git=, and run:
+   
+   #+LATEX: {\scriptsize
+   #+BEGIN_EXAMPLE
+   $ python3 -m python-udp-echo --timeout=1
+   #+END_EXAMPLE
+   #+LATEX: }
+
+   Then, somewhere else, run:
+
+   #+LATEX: {\scriptsize
+   #+BEGIN_EXAMPLE
+   $ nc -u $( dig +short some.hostname.com) 4500
+   hello
+   #+END_EXAMPLE
+   #+LATEX: }
+
+   and you'll see something like:
+
+   #+LATEX: {\scriptsize
+   #+BEGIN_EXAMPLE
+   0.0.0.0:4500: reflecting UDP/IP traffic
+     0p;      0.00p/s;         0b;      0.00b/s
+     0p;      0.00p/s;         0b;      0.00b/s
+     0p;      0.00p/s;         0b;      0.00b/s
+     0p;      0.00p/s;         0b;      0.00b/s
+     0p;      0.00p/s;         0b;      0.00b/s
+     0p;      0.00p/s;         0b;      0.00b/s
+('170.203.221.27', 26329): 00000000:  68 65 6c 6c 6f 0a                                  |hello.|
+     1p;      0.19p/s;         6b;      1.13b/s
+     1p;      0.16p/s;         6b;      0.95b/s
+     1p;      0.14p/s;         6b;      0.82b/s
+   #+END_EXAMPLE
+   #+LATEX: }
