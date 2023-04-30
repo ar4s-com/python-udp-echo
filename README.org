@@ -9,7 +9,7 @@
    
    #+LATEX: {\scriptsize
    #+BEGIN_EXAMPLE
-   $ python3 -m python-udp-echo --timeout=1
+$ python3 -m python-udp-echo -v reflect
    #+END_EXAMPLE
    #+LATEX: }
 
@@ -17,8 +17,8 @@
 
    #+LATEX: {\scriptsize
    #+BEGIN_EXAMPLE
-   $ nc -u $( dig +short some.hostname.com) 4500
-   hello
+$ nc -u $( dig +short some.hostname.com ) 4500
+hello
    #+END_EXAMPLE
    #+LATEX: }
 
@@ -26,16 +26,8 @@
 
    #+LATEX: {\scriptsize
    #+BEGIN_EXAMPLE
-   0.0.0.0:4500: reflecting UDP/IP traffic
-     0p;      0.00p/s;         0b;      0.00b/s
-     0p;      0.00p/s;         0b;      0.00b/s
-     0p;      0.00p/s;         0b;      0.00b/s
-     0p;      0.00p/s;         0b;      0.00b/s
-     0p;      0.00p/s;         0b;      0.00b/s
-     0p;      0.00p/s;         0b;      0.00b/s
-('170.203.221.27', 26329): 00000000:  68 65 6c 6c 6f 0a                                  |hello.|
-     1p;      0.19p/s;         6b;      1.13b/s
-     1p;      0.16p/s;         6b;      0.95b/s
-     1p;      0.14p/s;         6b;      0.82b/s
+04-30 09:59:28.751 MainThread UDP-echo WARNING  reflect    0.0.0.0:4500: reflecting UDP/IP traffic
+04-30 09:59:29.889 MainThread UDP-echo WARNING  reflect        11p;      9.67p/s;      2354b;   2069.54b/s
+04-30 09:59:30.877 MainThread UDP-echo WARNING  reflect        21p;      9.88p/s;      4494b;   2114.03b/s
    #+END_EXAMPLE
    #+LATEX: }
