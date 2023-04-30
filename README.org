@@ -22,7 +22,7 @@ hello
    #+END_EXAMPLE
    #+LATEX: }
 
-   and you'll see something like:
+   and you'll see =reflect= output something like:
 
    #+LATEX: {\scriptsize
    #+BEGIN_EXAMPLE
@@ -31,3 +31,5 @@ hello
 04-30 09:59:30.877 MainThread UDP-echo WARNING  reflect        21p;      9.88p/s;      4494b;   2114.03b/s
    #+END_EXAMPLE
    #+LATEX: }
+
+   Additional =-v= will output a hexdump of the packets.

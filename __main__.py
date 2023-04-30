@@ -3,6 +3,7 @@ import click
 import logging
 import time
 import select
+import sys
 
 from .hexdump import *
 
@@ -23,6 +24,7 @@ log_levelmap                    = {
     0: logging.WARNING,
     1: logging.INFO,
     2: logging.DEBUG,
+    3: logging.NOTSET,
 }
 
 def log_level( adjust ):
@@ -87,14 +89,19 @@ def reflect(ip, port, timeout, cycle):
         data, address		= sock.recvfrom(4096)
         cnt		       += 1
         siz		       += len( data )
-        log.info( f"{address!r}" )
-        log.debug("{dump}".format( address=address, dump=hexdump( data )))
 
         # swap the source and destination IP and port
         src_ip, src_port	= address
         dst_ip, dst_port	= server_address
+
         new_address		= (src_ip, src_port)
         new_data		= data
+
+        log.debug(
+            f"{dst_ip:>16s}:{dst_port:<5d} -> {src_ip:>16s}:{src_port:<5d}: {len( data )} bytes" + (
+                (f"\n" + hexdump( new_data )) if log.getEffectiveLevel() < logging.DEBUG else ""
+            )
+        )
 
         # send the modified data back out
         sock.sendto(new_data, new_address)
